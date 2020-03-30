@@ -6,7 +6,7 @@ module.exports = {
     config
       .entry('app')
       .clear()
-      .add('./src/demo/main.js')
+      .add('./src/demo/main.ts')
 
     const svgRule = config.module.rule('svg')
 

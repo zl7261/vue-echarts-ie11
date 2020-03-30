@@ -275,6 +275,7 @@ import theme from './theme.json'
 
 // Map of China
 import chinaMap from './china.json'
+import {test} from '../components'
 
 // registering map data
 ECharts.registerMap('china', chinaMap)
@@ -288,6 +289,9 @@ export default {
     chart: ECharts
   },
   store,
+  created () {
+    console.log(test())
+  },
   data () {
     const options = qs.parse(location.search, { ignoreQueryPrefix: true })
     return {

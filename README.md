@@ -1,11 +1,9 @@
 
-fork from **https://github.com/ecomfe/vue-echarts**
+Fork from **https://github.com/ecomfe/vue-echarts**
 
 Though I follow the project recommend webpack transpileDependencies config,  
-**It still an not run on ie11** 
+**It still can not run on ie11** 
 
-All I do is just **remove resize-detector and  do resize event listener by component self**
+All I do is just **remove resize-detector and  rewrite resize event listener and handler**
 
-And remove some useless code.  
-
-
+And remove some useless file and code.  

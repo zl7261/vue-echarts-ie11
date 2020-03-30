@@ -1,6 +1,6 @@
 {
   "name": "vue-echarts-ie11",
-  "version": "1.2.2",
+  "version": "1.2.5",
   "description": "ECharts component for Vue.js.",
   "author": "zl7261 (zhenliu7261@gmail)",
   "scripts": {

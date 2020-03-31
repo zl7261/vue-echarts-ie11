@@ -240,7 +240,8 @@
 
 <script>
 import qs from 'qs'
-import ECharts from '../components/ECharts.vue'
+import ECharts from '../components/ECharts.tsx'
+import EChartFunction from '../components'
 import 'echarts/lib/chart/bar'
 import 'echarts/lib/chart/line'
 import 'echarts/lib/chart/pie'
@@ -277,10 +278,10 @@ import theme from './theme.json'
 import chinaMap from './china.json'
 
 // registering map data
-ECharts.registerMap('china', chinaMap)
+EChartFunction.registerMap('china', chinaMap)
 
 // registering custom theme
-ECharts.registerTheme('ovilia-green', theme)
+EChartFunction.registerTheme('ovilia-green', theme)
 
 export default {
   name: 'Demo',
@@ -472,7 +473,7 @@ export default {
   watch: {
     connected: {
       handler (value) {
-        ECharts[value ? 'connect' : 'disconnect']('radiance')
+        EChartFunction[value ? 'connect' : 'disconnect']('radiance')
       },
       immediate: true
     },

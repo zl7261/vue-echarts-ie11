@@ -5,7 +5,7 @@ const resolve = require('@rollup/plugin-node-resolve')
 const commonjs = require('@rollup/plugin-commonjs')
 
 export default {
-  input: 'src/components/ECharts.vue',
+  input: 'src/components/EChart.tsx',
   output: {
     file: 'dist/vue-echarts.js',
     name: 'VueECharts',

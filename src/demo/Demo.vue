@@ -240,7 +240,8 @@
 
 <script>
 import qs from 'qs'
-import ECharts from '../components/ECharts.vue'
+import ECharts from '../components/ECharts.tsx'
+import EChartFunction from '../components'
 import 'echarts/lib/chart/bar'
 import 'echarts/lib/chart/line'
 import 'echarts/lib/chart/pie'
@@ -264,7 +265,7 @@ import pie from './data/pie'
 import polar from './data/polar'
 import scatter from './data/scatter'
 import map from './data/map'
-import { c1, c2 } from './data/connect'
+import {c1, c2} from './data/connect'
 import store from './store'
 
 // built-in theme
@@ -275,13 +276,12 @@ import theme from './theme.json'
 
 // Map of China
 import chinaMap from './china.json'
-import {test} from '../components'
 
 // registering map data
-ECharts.registerMap('china', chinaMap)
+EChartFunction.registerMap('china', chinaMap)
 
 // registering custom theme
-ECharts.registerTheme('ovilia-green', theme)
+EChartFunction.registerTheme('ovilia-green', theme)
 
 export default {
   name: 'Demo',
@@ -289,11 +289,8 @@ export default {
     chart: ECharts
   },
   store,
-  created () {
-    console.log(test())
-  },
-  data () {
-    const options = qs.parse(location.search, { ignoreQueryPrefix: true })
+  data() {
+    const options = qs.parse(location.search, {ignoreQueryPrefix: true})
     return {
       options,
       bar: getBar(),
@@ -328,28 +325,28 @@ export default {
     }
   },
   computed: {
-    scoreRadar () {
+    scoreRadar() {
       return this.$store.getters.scoreRadar
     },
-    metrics () {
-      return this.$store.state.scores.map(({ name }) => name)
+    metrics() {
+      return this.$store.state.scores.map(({name}) => name)
     },
-    isMax () {
-      const { value, max } = this.$store.state.scores[this.metricIndex]
+    isMax() {
+      const {value, max} = this.$store.state.scores[this.metricIndex]
       return value === max
     },
-    isMin () {
+    isMin() {
       return this.$store.state.scores[this.metricIndex].value === 0
     }
   },
   methods: {
-    handleClick () {
+    handleClick() {
       console.log('click from echarts')
     },
-    handleZrClick () {
+    handleZrClick() {
       console.log('click from zrender')
     },
-    refresh () {
+    refresh() {
       // simulating async data from server
       this.seconds = 3
       const bar = this.$refs.bar
@@ -367,16 +364,16 @@ export default {
         }
       }, 1000)
     },
-    toggleRenderer () {
+    toggleRenderer() {
       if (this.initOptions.renderer === 'canvas') {
         this.initOptions.renderer = 'svg'
       } else {
         this.initOptions.renderer = 'canvas'
       }
     },
-    convert () {
+    convert() {
       const map = this.$refs.map
-      const { width, height } = map
+      const {width, height} = map
       this.img = {
         src: map.getDataURL({
           pixelRatio: window.devicePixelRatio || 1
@@ -386,7 +383,7 @@ export default {
       }
       this.open = true
     },
-    increase (amount) {
+    increase(amount) {
       if (!this.asyncCount) {
         this.$store.commit('increment', {
           amount,
@@ -400,10 +397,10 @@ export default {
         })
       }
     },
-    loadFlights () {
+    loadFlights() {
       this.flightLoaded = true
 
-      const { flight } = this.$refs
+      const {flight} = this.$refs
       flight.showLoading({
         text: '',
         color: '#c23531',
@@ -411,10 +408,10 @@ export default {
         maskColor: '#003',
         zlevel: 0
       })
-      import('./data/flight.json').then(({ default: data }) => {
+      import('./data/flight.json').then(({default: data}) => {
         flight.hideLoading()
 
-        function getAirportCoord (idx) {
+        function getAirportCoord(idx) {
           return [data.airports[idx][3], data.airports[idx][4]]
         }
 
@@ -432,10 +429,10 @@ export default {
           },
           backgroundColor: '#003',
           tooltip: {
-            formatter (param) {
+            formatter(param) {
               const route = data.routes[param.dataIndex]
               return (
-                data.airports[route[1]][1] + ' > ' + data.airports[route[2]][1]
+              data.airports[route[1]][1] + ' > ' + data.airports[route[2]][1]
               )
             }
           },
@@ -475,23 +472,23 @@ export default {
   },
   watch: {
     connected: {
-      handler (value) {
-        ECharts[value ? 'connect' : 'disconnect']('radiance')
+      handler(value) {
+        EChartFunction[value ? 'connect' : 'disconnect']('radiance')
       },
       immediate: true
     },
-    'initOptions.renderer' (value) {
+    'initOptions.renderer'(value) {
       this.options.renderer = value === 'svg' ? value : undefined
       let query = qs.stringify(this.options)
       query = query ? '?' + query : ''
       history.pushState(
-        {},
-        document.title,
-        `${location.origin}${location.pathname}${query}${location.hash}`
+      {},
+      document.title,
+      `${location.origin}${location.pathname}${query}${location.hash}`
       )
     }
   },
-  mounted () {
+  mounted() {
     let dataIndex = -1
     const pie = this.$refs.pie
     const dataLen = pie.options.series[0].data.length
@@ -527,6 +524,8 @@ export default {
 
   html
     scroll-behavior smooth
+    overflow hidden
+    height 100%
 
   body
     margin 0
@@ -534,6 +533,8 @@ export default {
     font-family "Source Sans Pro", "Helvetica Neue", Arial, sans-serif
     color #666
     text-align center
+    overflow auto
+    height 100%
 
   a
     color inherit

@@ -55,8 +55,6 @@ export default {
   data () {
     return {
       lastArea: 0,
-      screenWidth: document.body.clientWidth,
-      screenHeight: document.body.clientHeight,
       // do not write in methods,prevent init issue
       resizeHandler: throttle(() => {
         if (this.lastArea === 0) {

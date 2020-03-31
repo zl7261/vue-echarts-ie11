@@ -5,7 +5,7 @@ import eCharts from 'echarts'
 // @ts-ignore
 import {throttle} from 'lodash'
 import ECharts = echarts.ECharts
-import {EChartsFunction, INIT_TRIGGERS, REWATCH_TRIGGERS} from '@/components/index'
+import {EChartsFunction, INIT_TRIGGERS, REWATCH_TRIGGERS} from '@/components/util'
 
 interface DataUrlParam {
   // Exporting format, can be either png, or jpeg
@@ -24,12 +24,12 @@ export default class VueEChart extends Vue {
   @Prop({
     default: () => {
     }
-  }) private options!: object
+  }) options!: eCharts.EChartOption
   @Prop({default: ''}) private theme!: string | object
   @Prop({
     default: () => {
     }
-  }) initOptions!: object
+  }) initOptions!: eCharts.EChartOption
   @Prop({default: ''}) group!: string
   @Prop({default: false}) watchShallow!: boolean
   @Prop({default: false}) manualUpdate!: boolean
@@ -38,7 +38,7 @@ export default class VueEChart extends Vue {
   lastArea = 0
   chart!: ECharts
   manualOptions!: echarts.EChartOption | echarts.EChartsResponsiveOption
-  private __unwatchOptions: any
+  __unwatchOptions!: Function|null
 
   // do not write in methods,prevent init issue
   resizeHandler = throttle(() => {

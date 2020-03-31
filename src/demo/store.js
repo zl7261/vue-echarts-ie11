@@ -6,19 +6,19 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     scores: [
-      { name: '进攻', max: 20, value: 19 },
-      { name: '防守', max: 20, value: 9 },
-      { name: '速度', max: 20, value: 18 },
-      { name: '力量', max: 20, value: 16 },
-      { name: '耐力', max: 20, value: 16 },
-      { name: '敏捷', max: 20, value: 20 }
+      { name: 'AP', max: 20, value: 19 },
+      { name: 'Armor', max: 20, value: 9 },
+      { name: 'Haste', max: 20, value: 18 },
+      { name: 'Strength', max: 20, value: 16 },
+      { name: 'Constitution', max: 20, value: 16 },
+      { name: 'Dexterity', max: 20, value: 20 }
     ]
   },
   getters: {
     scoreRadar ({ scores }) {
       return {
         title: {
-          text: '能力雷达图'
+          text: 'Ability Radar Chart'
         },
         tooltip: {},
         radar: {
@@ -28,7 +28,7 @@ export default new Vuex.Store({
         },
         series: [
           {
-            name: '能力值',
+            name: 'ability',
             type: 'radar',
             data: [{ value: scores.map(({ value }) => value) }]
           }

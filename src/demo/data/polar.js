@@ -8,7 +8,7 @@ for (let i = 0; i <= 360; i++) {
 
 export default {
   title: {
-    text: '极坐标双数值轴'
+    text: 'Polar double axis chart'
   },
   legend: {
     data: ['line']

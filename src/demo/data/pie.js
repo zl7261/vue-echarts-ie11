@@ -1,6 +1,6 @@
 export default {
   title: {
-    text: '饼图程序调用高亮示例',
+    text: 'Pie Chart High-Light Demo',
     x: 'center'
   },
   tooltip: {
@@ -10,20 +10,20 @@ export default {
   legend: {
     orient: 'vertical',
     left: 'left',
-    data: ['直接访问', '邮件营销', '联盟广告', '视频广告', '搜索引擎']
+    data: ['web page', 'mail ads', 'campaign', 'video', 'search engine']
   },
   series: [
     {
-      name: '访问来源',
+      name: 'Access From',
       type: 'pie',
       radius: '55%',
       center: ['50%', '60%'],
       data: [
-        { value: 335, name: '直接访问' },
-        { value: 310, name: '邮件营销' },
-        { value: 234, name: '联盟广告' },
-        { value: 135, name: '视频广告' },
-        { value: 1548, name: '搜索引擎' }
+        { value: 335, name: 'web page' },
+        { value: 310, name: 'mail ads' },
+        { value: 234, name: 'campaign' },
+        { value: 135, name: 'video' },
+        { value: 1548, name: 'search engine' }
       ],
       itemStyle: {
         emphasis: {

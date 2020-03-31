@@ -65,7 +65,7 @@
         <chart ref="pie"
                :options="pie"
                :init-options="initOptions"
-               autoResize
+               auto-resize
         />
       </figure>
     </section>
@@ -241,7 +241,7 @@
 <script>
 import qs from 'qs'
 import ECharts from '../components/ECharts.tsx'
-import EChartFunction from '../components'
+import EChartFunction from '../components/util'
 import 'echarts/lib/chart/bar'
 import 'echarts/lib/chart/line'
 import 'echarts/lib/chart/pie'

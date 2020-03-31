@@ -400,7 +400,7 @@ function convertData (data) {
 export default {
   backgroundColor: '#404a59',
   title: {
-    text: '全国主要城市空气质量',
+    text: 'Air quality in major cities of China',
     subtext: 'data from PM25.in',
     sublink: 'http://www.pm25.in',
     left: 'center',

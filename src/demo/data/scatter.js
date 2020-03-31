@@ -47,7 +47,7 @@ const data = [
 
 export default {
   title: {
-    text: '各国人均寿命与GDP对比'
+    text: 'Comparison of life expectancy and GDP of countries'
   },
   legend: {
     right: 10,

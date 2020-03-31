@@ -1,6 +1,6 @@
 {
   "name": "vue-echarts-ie11",
-  "version": "1.2.5",
+  "version": "2.0.0",
   "description": "ECharts component for Vue.js.",
   "author": "zl7261 (zhenliu7261@gmail)",
   "scripts": {
@@ -36,8 +36,7 @@
     "rollup": "^1.29.1",
     "rollup-plugin-terser": "^5.2.0",
     "rollup-plugin-vue": "^5.1.6",
-    "stylus": "^0.54.7",
-    "stylus-loader": "^3.0.2",
+    "sass-loader": "^8.0.2",
     "typescript": "~3.7.5",
     "vue": "^2.6.11",
     "vue-template-compiler": "^2.6.11",

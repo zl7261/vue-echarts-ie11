@@ -14,15 +14,16 @@
   "module": "components/EChart.tsx",
   "dependencies": {
     "echarts": "^4.6.0",
-    "lodash": "4.17.15",
-    "vue-class-component": "^7.2.2",
-    "vue-property-decorator": "^8.3.0"
+    "lodash": "^4.17.15",
+    "vue-class-component": "^7.2.3",
+    "vue-property-decorator": "^8.4.1"
   },
   "devDependencies": {
-    "@types/echarts": "^4.4.4",
     "@rollup/plugin-buble": "^0.21.0",
     "@rollup/plugin-commonjs": "^11.0.1",
     "@rollup/plugin-node-resolve": "^7.0.0",
+    "@types/echarts": "^4.4.4",
+    "@types/lodash": "^4.14.149",
     "@types/qs": "^6.9.1",
     "@vue/cli-plugin-babel": "^4.1.2",
     "@vue/cli-plugin-typescript": "^4.2.3",

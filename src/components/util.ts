@@ -22,23 +22,7 @@ const ChartFunction = {
     graphic: _.graphic
 }
 export const Init_Trigger = ['theme', 'initOptions']
+
 export const Watch_Trigger = ['manualUpdate', 'watchShallow']
-
-export enum ChartFunctionEnum {
-    setOption = 'setOption',
-    appendData = 'appendData',
-    resize = 'resize',
-    dispatchAction = 'dispatchAction',
-    convertToPixel = 'convertToPixel',
-    convertFromPixel = 'convertFromPixel',
-    containPixel = 'containPixel',
-    showLoading = 'showLoading',
-    hideLoading = 'hideLoading',
-    getDataURL = 'getDataURL',
-    getConnectedDataURL = 'getConnectedDataURL',
-    clear = 'clear',
-    dispose = 'dispose'
-}
-
 
 export default ChartFunction

@@ -1,10 +1,8 @@
 import {Component, Prop, Watch} from 'vue-property-decorator'
 import Vue from 'vue'
-// @ts-ignore
 import eCharts from 'echarts'
-// @ts-ignore
 import {throttle} from 'lodash'
-import {ChartFunctionEnum, Init_Trigger, Watch_Trigger} from '@/components/util'
+import {Init_Trigger, Watch_Trigger} from '@/components/util'
 import ECharts = echarts.ECharts
 
 interface DataUrlParam {
@@ -29,7 +27,12 @@ export default class VueEChart extends Vue {
   @Prop({
     default: () => {
     }
-  }) initOptions!: eCharts.EChartOption
+  }) initOptions!: {
+    devicePixelRatio?: number;
+    renderer?: string;
+    width?: number | string;
+    height?: number | string;
+  }
   @Prop({default: ''}) group!: string
   @Prop({default: false}) watchShallow!: boolean
   @Prop({default: false}) manualUpdate!: boolean
@@ -212,26 +215,18 @@ export default class VueEChart extends Vue {
     this.init()
   }
 
-  delegateGet(methodName: string) {
-    if (!this.chart) {
-      this.init()
-    }
-    // @ts-ignore
-    return this.chart[methodName]()
-  }
-
   getArea() {
-    // @ts-ignore
-    return this.$el.offsetWidth * this.$el.offsetHeight
+    let el = this.$el as (HTMLDivElement | HTMLCanvasElement)
+    return el.offsetWidth * el.offsetHeight
   }
 
-  init(options?: any) {
+  init(options?: eCharts.EChartOption | eCharts.EChartsResponsiveOption) {
     if (this.chart) {
       return
     }
 
-    // @ts-ignore
-    const chart = eCharts.init(this.$el, this.theme, this.initOptions)
+    let el = this.$el as (HTMLDivElement | HTMLCanvasElement)
+    const chart = eCharts.init(el, this.theme, this.initOptions)
 
     if (this.group) {
       chart.group = this.group
@@ -257,25 +252,29 @@ export default class VueEChart extends Vue {
       width: {
         configurable: true,
         get: () => {
-          return this.delegateGet('getWidth')
+          this.initChart()
+          return this.chart.getWidth()
         }
       },
       height: {
         configurable: true,
         get: () => {
-          return this.delegateGet('getHeight')
+          this.initChart()
+          return this.chart.getHeight()
         }
       },
       isDisposed: {
         configurable: true,
         get: () => {
-          return !!this.delegateGet('isDisposed')
+          this.initChart()
+          return this.chart.isDisposed()
         }
       },
       computedOptions: {
         configurable: true,
         get: () => {
-          return this.delegateGet('getOption')
+          this.initChart()
+          return this.chart.getOption()
         }
       }
     })
